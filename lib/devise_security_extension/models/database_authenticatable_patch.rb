@@ -8,7 +8,12 @@ module Devise
         new_password_confirmation = params[:password_confirmation]
 
         result = if valid_password?(current_password) && new_password.present? && new_password_confirmation.present?
-                   update_attributes(params, *options)
+                   if current_password != new_password
+                     update_attributes(params, *options)
+                   else
+                     self.errors.add(:password, I18n.translate('errors.messages.equal_to_current_password'))
+                     false
+                   end
                  else
                    self.assign_attributes(params, *options)
                    self.valid?
