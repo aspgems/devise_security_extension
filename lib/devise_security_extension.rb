@@ -4,6 +4,7 @@ require 'active_support/core_ext/integer'
 require 'active_support/ordered_hash'
 require 'active_support/concern'
 require 'devise'
+require 'devise_security_extension/models/database_authenticatable_patch'
 
 module Devise
 
